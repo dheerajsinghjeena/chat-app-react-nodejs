@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginRoute } from "../utils/APIRoutes";
 
+// from control for login procedure 
 export default function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({ username: "", password: "" });
@@ -23,6 +24,7 @@ export default function Login() {
     }
   }, []);
 
+  // form validation function 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
@@ -39,6 +41,7 @@ export default function Login() {
     return true;
   };
 
+  // functionality for the submit button
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
@@ -61,6 +64,7 @@ export default function Login() {
     }
   };
 
+  // return or check the data
   return (
     <>
       <FormContainer>
@@ -93,6 +97,7 @@ export default function Login() {
   );
 }
 
+// designing for the login formSS
 const FormContainer = styled.div`
   height: 100vh;
   width: 100vw;

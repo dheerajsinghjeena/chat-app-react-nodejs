@@ -21,11 +21,13 @@ export default function SetAvatar() {
     theme: "dark",
   };
 
+  // set avatar and login components
   useEffect(async () => {
     if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY))
       navigate("/login");
   }, []);
 
+  // this is used to set the user profile photoS
   const setProfilePicture = async () => {
     if (selectedAvatar === undefined) {
       toast.error("Please select an avatar", toastOptions);
@@ -52,6 +54,7 @@ export default function SetAvatar() {
     }
   };
 
+  // to create a general effect when loading page
   useEffect(async () => {
     const data = [];
     for (let i = 0; i < 4; i++) {
@@ -64,6 +67,7 @@ export default function SetAvatar() {
     setAvatars(data);
     setIsLoading(false);
   }, []);
+  
   return (
     <>
       {isLoading ? (
@@ -79,9 +83,8 @@ export default function SetAvatar() {
             {avatars.map((avatar, index) => {
               return (
                 <div
-                  className={`avatar ${
-                    selectedAvatar === index ? "selected" : ""
-                  }`}
+                  className={`avatar ${selectedAvatar === index ? "selected" : ""
+                    }`}
                 >
                   <img
                     src={`data:image/svg+xml;base64,${avatar}`}

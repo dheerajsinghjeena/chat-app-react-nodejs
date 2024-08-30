@@ -39,7 +39,7 @@ export default function ChatInput({ handleSendMsg }) {
           placeholder="type your message here"
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
-        />
+        />  
         <button type="submit">
           <IoMdSend />
         </button>

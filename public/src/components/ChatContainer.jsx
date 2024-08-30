@@ -6,11 +6,13 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
 
+// Define the ChatContainer component
 export default function ChatContainer({ currentChat, socket }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
+  // Effect hook to fetch messages when the currentChat changes
   useEffect(async () => {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -21,7 +23,7 @@ export default function ChatContainer({ currentChat, socket }) {
     });
     setMessages(response.data);
   }, [currentChat]);
-
+  
   useEffect(() => {
     const getCurrentChat = async () => {
       if (currentChat) {
@@ -33,6 +35,7 @@ export default function ChatContainer({ currentChat, socket }) {
     getCurrentChat();
   }, [currentChat]);
 
+  // Function to handle sending messages
   const handleSendMsg = async (msg) => {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -61,14 +64,17 @@ export default function ChatContainer({ currentChat, socket }) {
     }
   }, []);
 
+  // Effect hook to update messages state when arrivalMessage changes
   useEffect(() => {
     arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage]);
 
+  // Effect hook to scroll to the bottom of the messages container
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Render ChatContainer component
   return (
     <Container>
       <div className="chat-header">
@@ -90,9 +96,8 @@ export default function ChatContainer({ currentChat, socket }) {
           return (
             <div ref={scrollRef} key={uuidv4()}>
               <div
-                className={`message ${
-                  message.fromSelf ? "sended" : "recieved"
-                }`}
+                className={`message ${message.fromSelf ? "sended" : "recieved"
+                  }`}
               >
                 <div className="content ">
                   <p>{message.message}</p>
@@ -107,6 +112,7 @@ export default function ChatContainer({ currentChat, socket }) {
   );
 }
 
+// Styled component for styling the ChatContainer component
 const Container = styled.div`
   display: grid;
   grid-template-rows: 10% 80% 10%;

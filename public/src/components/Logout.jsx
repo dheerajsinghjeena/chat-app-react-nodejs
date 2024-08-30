@@ -21,8 +21,7 @@ export default function Logout() {
       <BiPowerOff />
     </Button>
   );
-}
-
+} 
 const Button = styled.button`
   display: flex;
   justify-content: center;
@@ -33,7 +32,6 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   svg {
-    font-size: 1.3rem;
-    color: #ebe7ff;
+    font-size: 1.3rem; color: #ebe7ff;
   }
 `;

@@ -185,6 +185,7 @@ const FormContainer = styled.div`
       background-color: #4e0eff;
     }
   }
+
   span {
     color: white;
     text-transform: uppercase;
